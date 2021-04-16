@@ -1,0 +1,12 @@
+.table-container {
+    padding: 30px;
+}
+
+.table-container table {
+    width: 100%;
+    padding-top: 30px;
+}
+
+button + button {
+    margin-left: 10px;
+}

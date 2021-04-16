@@ -1,9 +1,7 @@
 ﻿using FinancialControl.BLL.Models;
 using FinancialControl.DAL;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +22,7 @@ namespace FinancialControl.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
-            return await _context.Categories.ToListAsync();
+            return await _context.Categories.Include(c=> c.Type).ToListAsync();
         }
 
         [HttpGet("{id}")]
@@ -89,6 +87,5 @@ namespace FinancialControl.API.Controllers
         {
             return _context.Categories.Any(c => c.Id == id);
         }
-
     }
 }
