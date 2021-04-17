@@ -1,6 +1,6 @@
 import { Type } from './type.model';
 
-export interface Category {
+export class Category {
     id: number;
     name: string;
     icon: string;

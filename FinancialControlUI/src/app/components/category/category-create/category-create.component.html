@@ -1,0 +1,39 @@
+<mat-progress-bar class="progress-bar" *ngIf="!isSearchCompleted" mode="indeterminate"></mat-progress-bar>
+
+<mat-card class="container" *ngIf="isSearchCompleted">
+    <mat-card-title>Create New Category</mat-card-title>
+
+    <form [formGroup]="categoryForm">
+        <mat-card-content>
+            <div>
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input type="text" matInput formControlName="name" placeholder="Category name" />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Icon</mat-label>
+                    <input type="text" matInput formControlName="icon" placeholder="Icon code" />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Type</mat-label>
+                    <mat-select formControlName="typeId">
+                        <mat-option *ngFor="let type of types" [value]="type.id"> {{type.name}} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+
+        <mat-divider></mat-divider>
+
+        <mat-card-actions>
+            <div>
+                <button type="submit" mat-stroked-button color="primary">Save</button>
+                <button mat-stroked-button>Voltar</button>
+            </div>
+        </mat-card-actions>
+    </form>
+</mat-card>

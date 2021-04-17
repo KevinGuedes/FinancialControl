@@ -15,7 +15,7 @@ export class TypeService {
     private http: HttpClient,
   ) { }
 
-  getAllTypes(): Observable<Type[]> {
+  getTypes(): Observable<Type[]> {
     return this.http.get<Type[]>(this.url).pipe(
       map(p => p),
       catchError(error => this.errorHandler(error))

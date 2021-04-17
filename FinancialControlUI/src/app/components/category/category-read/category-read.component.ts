@@ -15,6 +15,7 @@ export class CategoryReadComponent implements OnInit {
 
   dataSource: MatTableDataSource<Category>;
   displayedColumns = ['name', 'icon', 'type', 'actions']
+  isSearchCompleted: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -29,6 +30,7 @@ export class CategoryReadComponent implements OnInit {
       this.dataSource = new MatTableDataSource(categories);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.isSearchCompleted = true;
     })
   }
 

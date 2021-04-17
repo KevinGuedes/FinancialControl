@@ -1,4 +1,6 @@
-<div class="mat-elevation-z4 table-container" color="primary">
+<mat-progress-bar class="progress-bar" *ngIf="!isSearchCompleted" mode="indeterminate"></mat-progress-bar>
+
+<mat-card class="mat-elevation-z4 container" *ngIf="isSearchCompleted">
     <mat-form-field>
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Category Name" #input>
@@ -47,4 +49,4 @@
     <mat-paginator #paginator [length]="dataSource?.data?.length" [pageIndex]="0" [pageSize]="10"
         [pageSizeOptions]="[5, 10, 15, 30]">
     </mat-paginator>
-</div>
+</mat-card>
