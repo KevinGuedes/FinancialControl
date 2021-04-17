@@ -1,9 +1,9 @@
 <mat-progress-bar class="progress-bar" *ngIf="!isSearchCompleted" mode="indeterminate"></mat-progress-bar>
 
 <mat-card class="container" *ngIf="isSearchCompleted">
-    <mat-card-title>Create New Category</mat-card-title>
+    <mat-card-title>Update Category: {{ categoryName }}</mat-card-title>
 
-    <form [formGroup]="categoryForm" (ngSubmit)="saveNewCategory()">
+    <form [formGroup]="categoryForm">
         <mat-card-content>
             <div>
                 <mat-form-field>

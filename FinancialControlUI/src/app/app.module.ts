@@ -18,16 +18,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
 import { CategoryReadComponent } from './components/category/category-read/category-read.component';
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
+import { CategoryUpdateComponent } from './components/category/category-update/category-update.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryReadComponent,
-    CategoryCreateComponent
+    CategoryCreateComponent,
+    CategoryUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { CategoryCreateComponent } from './components/category/category-create/c
     ReactiveFormsModule,
     MatDividerModule,
     MatSelectModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatGridListModule
   ],
   providers: [
     TypeService,

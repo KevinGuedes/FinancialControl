@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TypeService } from 'src/app/services/type.service';
 import { FormGroup, FormControl } from '@angular/forms'
 import { Type } from 'src/app/models/type.model';
+import { CategoryService } from 'src/app/services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-create',
@@ -15,7 +17,9 @@ export class CategoryCreateComponent implements OnInit {
   isSearchCompleted: boolean = false;
 
   constructor(
-    private typeService: TypeService
+    private typeService: TypeService,
+    private categoryService: CategoryService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +32,14 @@ export class CategoryCreateComponent implements OnInit {
       name: new FormControl(null),
       icon: new FormControl(null),
       typeId: new FormControl(null),
+    })
+  }
+
+  saveNewCategory(): void {
+    const category = this.categoryForm.value;
+    console.log(category)
+    this.categoryService.insertCategory(category).subscribe(category => {
+      this.router.navigate(['category'])
     })
   }
 
