@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class TypeService {
 
-  private url: string = 'api/Type'
+  private url: string = 'https://localhost:44368/type'
 
   constructor(
     private http: HttpClient,

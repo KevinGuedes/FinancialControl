@@ -9,7 +9,7 @@ using Type = FinancialControl.BLL.Models.Type;
 
 namespace FinancialControl.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TypeController : ControllerBase
     {

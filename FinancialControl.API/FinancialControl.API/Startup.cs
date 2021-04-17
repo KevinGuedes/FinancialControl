@@ -29,10 +29,10 @@ namespace FinancialControl.API
 
             services.AddCors();
 
-            services.AddSpaStaticFiles(directory =>
-            {
-                directory.RootPath = "FinancialControlUI";
-            });
+            //services.AddSpaStaticFiles(directory =>
+            //{
+            //    directory.RootPath = "FinancialControlUI";
+            //});
 
             services
                 .AddControllers()
@@ -63,24 +63,24 @@ namespace FinancialControl.API
 
             app.UseAuthorization();
 
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
 
-            app.UseSpaStaticFiles();
+            //app.UseSpaStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = Path.Combine(Directory.GetCurrentDirectory(), "FinancialControlUI");
+            //app.UseSpa(spa =>
+            //{
+            //    spa.Options.SourcePath = Path.Combine(Directory.GetCurrentDirectory(), "FinancialControlUI");
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseProxyToSpaDevelopmentServer($"http://localhost:4200/");
-                }
-            });
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseProxyToSpaDevelopmentServer($"http://localhost:4200/");
+            //    }
+            //});
         }
     }
 }

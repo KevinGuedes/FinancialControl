@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class CategoryService {
 
-  private url: string = 'api/category'
+  private url: string = 'https://localhost:44368/category'
 
   constructor(
     private http: HttpClient

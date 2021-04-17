@@ -1,6 +1,5 @@
 table {
     width: 100%;
-    padding-top: 30px;
 }
 
 table th {
@@ -9,4 +8,20 @@ table th {
 
 button + button {
     margin-left: 10px;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1rem;
+}
+
+.mat-form-field {
+    padding-top: 1rem;
+}
+
+mat-card-title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
