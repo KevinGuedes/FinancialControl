@@ -15,6 +15,7 @@ export class CategoryUpdateComponent implements OnInit {
 
   categoryName: string;
   category: Category;
+  categoryId: number;
   types: Type[];
   categoryForm: FormGroup;
   isSearchCompleted: boolean = false;
@@ -27,12 +28,13 @@ export class CategoryUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params.id;
     this.typeService.getTypes().subscribe(types => {
       this.types = types
     })
 
-    this.categoryService.getCategoryById(id).subscribe(category => {
+    this.categoryId = this.route.snapshot.params.id;
+
+    this.categoryService.getCategoryById(this.categoryId).subscribe(category => {
       this.category = category;
       this.categoryName = category.name;
       this.isSearchCompleted = true;
@@ -43,6 +45,13 @@ export class CategoryUpdateComponent implements OnInit {
         icon: new FormControl(category.icon),
         typeId: new FormControl(category.typeId),
       })
+    })
+  }
+
+  updateCategory() {
+    const category = this.categoryForm.value;
+    this.categoryService.updateCategory(this.categoryId, category).subscribe(() => {
+      this.router.navigate(['category']);
     })
   }
 

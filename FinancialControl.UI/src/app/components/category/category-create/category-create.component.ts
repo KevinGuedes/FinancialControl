@@ -39,7 +39,7 @@ export class CategoryCreateComponent implements OnInit {
     const category = this.categoryForm.value;
     console.log(category)
     this.categoryService.insertCategory(category).subscribe(category => {
-      this.router.navigate(['category'])
+      this.router.navigate(['category']);
     })
   }
 

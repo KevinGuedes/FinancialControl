@@ -17,12 +17,12 @@ namespace FinancialControl.DAL.Mappers
                 new Type
                 {
                     Id = 1,
-                    Name = "Expenditures"
+                    Name = "Expenditure"
                 },
                 new Type
                 {
                     Id = 2,
-                    Name = "Profits"
+                    Name = "Profit"
                 });
 
             builder.ToTable("Types");

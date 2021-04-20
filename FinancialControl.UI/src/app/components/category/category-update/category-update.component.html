@@ -3,7 +3,7 @@
 <mat-card class="container" *ngIf="isSearchCompleted">
     <mat-card-title>Update Category: {{ categoryName }}</mat-card-title>
 
-    <form [formGroup]="categoryForm">
+    <form [formGroup]="categoryForm" (ngSubmit)="updateCategory()">
         <mat-card-content>
             <div>
                 <mat-form-field>
@@ -31,8 +31,8 @@
 
         <mat-card-actions>
             <div>
-                <button type="submit" mat-stroked-button color="primary">Save</button>
-                <button mat-stroked-button>Voltar</button>
+                <button type="submit" mat-raised-button color="primary">Save</button>
+                <button mat-stroked-button routerLink="/category">Voltar</button>
             </div>
         </mat-card-actions>
     </form>

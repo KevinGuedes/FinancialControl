@@ -5,7 +5,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Category } from 'src/app/models/category.model';
 
-
 @Component({
   selector: 'app-category-read',
   templateUrl: './category-read.component.html',
@@ -26,7 +25,6 @@ export class CategoryReadComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe(categories => {
-      console.log(categories);
       this.dataSource = new MatTableDataSource(categories);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
