@@ -50,10 +50,10 @@ namespace FinancialControl.API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CategoryExists(id))
-                    return NotFound();
-                else
+                if (CategoryExists(id))
                     throw;
+                else
+                    return NotFound();
             }
 
             return NoContent();
