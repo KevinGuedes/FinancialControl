@@ -43,7 +43,7 @@
                             edit
                         </mat-icon>
                     </button>
-                    <button mat-mini-fab color="warn">
+                    <button mat-mini-fab color="warn" (click)="openDeleteDialog(row.id, row.name)">
                         <mat-icon>
                             delete_forever
                         </mat-icon>

@@ -25,7 +25,6 @@ import { AppComponent } from './app.component';
 import { CategoryReadComponent } from './components/category/category-read/category-read.component';
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
 import { CategoryUpdateComponent } from './components/category/category-update/category-update.component';
-import { CustomDialogComponent } from './components/message/custom-dialog/custom-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { CustomDialogComponent } from './components/message/custom-dialog/custom
     CategoryReadComponent,
     CategoryCreateComponent,
     CategoryUpdateComponent,
-    CustomDialogComponent,
   ],
   imports: [
     BrowserModule,

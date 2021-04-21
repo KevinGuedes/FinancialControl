@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>Delete Category: {{ data.categoryName }}</h1>
+<div mat-dialog-content>Are you sure you want to delete the category {{ data.categoryName }}?</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="warn" (click)="deleteCategory(data.categoryId)">Yes</button>
+    <button mat-raised-button (click)="close(false)">No</button>
+</div>
