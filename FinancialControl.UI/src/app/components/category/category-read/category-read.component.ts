@@ -37,7 +37,7 @@ export class CategoryReadComponent implements OnInit {
     this.customDialog
       .open(DeleteDialogComponent, {
         data: {
-          categroyId: id,
+          categoryId: id,
           categoryName: name
         }
       })
