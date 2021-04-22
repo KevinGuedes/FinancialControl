@@ -28,7 +28,7 @@ namespace FinancialControl.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            Category category = await _context.Categories.FindAsync(id);
 
             if (category == null)
                 return NotFound();
@@ -72,7 +72,7 @@ namespace FinancialControl.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Category>> DeleteCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            Category category = await _context.Categories.FindAsync(id);
 
             if (category == null)
                 return NotFound();

@@ -29,7 +29,7 @@ namespace FinancialControl.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Type>> GetType(int id)
         {
-            var type = await _context.Types.FindAsync(id);
+            Type type = await _context.Types.FindAsync(id);
 
             if (type == null)
                 return NotFound();
@@ -73,7 +73,7 @@ namespace FinancialControl.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Type>> DeleteType(int id)
         {
-            var type = await _context.Types.FindAsync(id);
+            Type type = await _context.Types.FindAsync(id);
 
             if (type == null)
                 return NotFound();

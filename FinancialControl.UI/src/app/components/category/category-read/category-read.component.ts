@@ -35,7 +35,7 @@ export class CategoryReadComponent implements OnInit {
 
   openDeleteDialog(id: number, name: string): void {
     this.customDialog
-      .open(DeleteDialogComponent, {
+      .open(DialogCategoryDeleteComponent, {
         data: {
           categoryId: id,
           categoryName: name
@@ -59,13 +59,14 @@ export class CategoryReadComponent implements OnInit {
 }
 
 @Component({
-  selector: 'app-delete-dialog',
-  templateUrl: './delete-dialog.component.html'
+  selector: 'app-dialog-category-delete',
+  templateUrl: './dialog-category-delete.component.html',
+  styleUrls: ['./category-read.component.css']
 })
-export class DeleteDialogComponent {
+export class DialogCategoryDeleteComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<DeleteDialogComponent>,
+    public dialogRef: MatDialogRef<DialogCategoryDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {
       categoryName: string,
       categoryId: number
@@ -74,7 +75,6 @@ export class DeleteDialogComponent {
   ) { }
 
   deleteCategory(id: number) {
-    console.log(id)
     this.categoryService.deleteCategory(id).subscribe(category => {
       this.close(true);
     })
