@@ -1,5 +1,7 @@
 using FinancialControl.BLL.Models;
 using FinancialControl.DAL;
+using FinancialControl.DAL.Interfaces;
+using FinancialControl.DAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +35,11 @@ namespace FinancialControl.API
             //{
             //    directory.RootPath = "FinancialControlUI";
             //});
+
+            services
+                .AddScoped<ICategoryRepository, CategoryRepository>()
+                .AddScoped<ITypeRepository, TypeRepository>();
+
 
             services
                 .AddControllers()

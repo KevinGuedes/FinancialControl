@@ -1,9 +1,8 @@
 ﻿using FinancialControl.BLL.Models;
-using FinancialControl.DAL;
+using FinancialControl.DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FinancialControl.API.Controllers
@@ -12,23 +11,23 @@ namespace FinancialControl.API.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly Context _context;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryController(Context context)
+        public CategoryController(ICategoryRepository categoryRepository)
         {
-            _context = context;
+            _categoryRepository = categoryRepository;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
-            return await _context.Categories.Include(c=> c.Type).ToListAsync();
+            return await _categoryRepository.GetAll().ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
-            Category category = await _context.Categories.FindAsync(id);
+            Category category = await _categoryRepository.GetById(id);
 
             if (category == null)
                 return NotFound();
@@ -42,50 +41,51 @@ namespace FinancialControl.API.Controllers
             if (id != category.Id)
                 return BadRequest();
 
-            _context.Entry(category).State = EntityState.Modified;
 
-            try
+            if (ModelState.IsValid)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (CategoryExists(id))
-                    throw;
-                else
-                    return NotFound();
+                await _categoryRepository.Update(category);
+
+                return Ok(new
+                {
+                    message = $"Category {category.Name} successfully updated"
+                });
             }
 
-            return NoContent();
+            return BadRequest(ModelState);
         }
 
         [HttpPost]
         public async Task<ActionResult<Category>> InsertCategory(Category category)
         {
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                await _categoryRepository.Insert(category);
 
-            return CreatedAtAction("GetCategory", new { id = category.Id }, category);
+                return Ok(new
+                {
+                    message = $"Category {category.Name} successfully inserted"
+                });
+            }
+
+            return BadRequest(ModelState);
         }
 
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Category>> DeleteCategory(int id)
         {
-            Category category = await _context.Categories.FindAsync(id);
+            Category category = await _categoryRepository.GetById(id);
 
             if (category == null)
                 return NotFound();
 
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
+            await _categoryRepository.Delete(id);
 
-            return category;
-        }
-
-        private bool CategoryExists(int id)
-        {
-            return _context.Categories.Any(c => c.Id == id);
+            return Ok(new
+            {
+                message = $"Category {category.Name} successfully deleted"
+            });
         }
     }
 }
