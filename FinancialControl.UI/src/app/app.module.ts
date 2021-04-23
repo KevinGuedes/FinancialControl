@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { AppComponent } from './app.component';
 import { CategoryReadComponent, DialogCategoryDeleteComponent } from './components/category/category-read/category-read.component';
@@ -51,7 +52,8 @@ import { CategoryUpdateComponent } from './components/category/category-update/c
     MatSelectModule,
     MatProgressBarModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule,
   ],
   providers: [
     TypeService,

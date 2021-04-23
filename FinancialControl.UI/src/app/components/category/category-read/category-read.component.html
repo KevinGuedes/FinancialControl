@@ -10,10 +10,23 @@
 
         <mat-divider></mat-divider>
 
-        <mat-form-field>
+        <!-- <mat-form-field>
             <mat-label>Filter</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Category Name" #input>
-        </mat-form-field>
+        </mat-form-field> -->
+
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Category Name</mat-label>
+                <input type="text" placeholder="Name" aria-label="Category Name" matInput [formControl]="filterFormControl"
+                    [matAutocomplete]="auto" #input>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{ option }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
 
         <table mat-table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="name">

@@ -27,7 +27,9 @@ namespace FinancialControl.API
 
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("FinancialControlDB")));
 
-            services.AddIdentity<User, Function>().AddEntityFrameworkStores<Context>();
+            services
+                .AddIdentity<User, Function>()
+                .AddEntityFrameworkStores<Context>();
 
             services.AddCors();
 
@@ -43,14 +45,8 @@ namespace FinancialControl.API
 
             services
                 .AddControllers()
-                .AddJsonOptions(options =>
-                {
-                    options.JsonSerializerOptions.IgnoreNullValues = true;
-                })
-                .AddNewtonsoftJson(options =>
-                {
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                });
+                .AddJsonOptions(options => options.JsonSerializerOptions.IgnoreNullValues = true)
+                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
 

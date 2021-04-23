@@ -5,6 +5,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Category } from 'src/app/models/category.model';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
+
 @Component({
   selector: 'app-category-read',
   templateUrl: './category-read.component.html',
@@ -15,6 +20,9 @@ export class CategoryReadComponent implements OnInit {
   dataSource: MatTableDataSource<Category>;
   displayedColumns = ['name', 'icon', 'type', 'actions']
   isSearchCompleted: boolean = false;
+  filteredOptions: Observable<string[]>;
+  options: string[];
+  filterFormControl: FormControl = new FormControl();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -28,9 +36,8 @@ export class CategoryReadComponent implements OnInit {
     this.buildCategoryTable();
   }
 
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(value: string): void {
+    this.dataSource.filter = value.trim().toLowerCase();
   }
 
   openDeleteDialog(id: number, name: string): void {
@@ -50,11 +57,27 @@ export class CategoryReadComponent implements OnInit {
 
   buildCategoryTable(): void {
     this.categoryService.getCategories().subscribe(categories => {
+      this.options = categories.map(category => category.name);
+      this.filteredOptions = this.filterFormControl.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => this._filter(value)),
+        );
+
+      this.filterFormControl.valueChanges.subscribe(value => {
+        this.applyFilter(value);
+      })
+
       this.dataSource = new MatTableDataSource(categories);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.isSearchCompleted = true;
     })
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 }
 
