@@ -10,6 +10,8 @@ namespace FinancialControl.DAL.Interfaces
 
         Task<TEntity> GetById(int id);
 
+        Task<TEntity> GetById(string id);
+
         Task Insert(TEntity entity);
 
         Task Insert(List<TEntity> entity);
@@ -17,5 +19,7 @@ namespace FinancialControl.DAL.Interfaces
         Task Update(TEntity entity);
 
         Task Delete(int id);
+
+        Task Delete(string id);
     }
 }

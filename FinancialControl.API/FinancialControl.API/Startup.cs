@@ -39,7 +39,8 @@ namespace FinancialControl.API
 
             services
                 .AddScoped<ICategoryRepository, CategoryRepository>()
-                .AddScoped<ITypeRepository, TypeRepository>();
+                .AddScoped<ITypeRepository, TypeRepository>()
+                .AddScoped<IFunctionRepository, FunctionRepository>();
 
             services
                 .AddControllers()

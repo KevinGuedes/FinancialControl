@@ -70,7 +70,7 @@ namespace FinancialControl.API.Controllers
                 });
             }
 
-            return BadRequest(category);
+            return BadRequest(ModelState);
         }
 
 

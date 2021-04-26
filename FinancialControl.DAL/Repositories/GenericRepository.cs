@@ -30,6 +30,20 @@ namespace FinancialControl.DAL.Repositories
             }
         }
 
+        public async Task Delete(string id)
+        {
+            try
+            {
+                var entity = await GetById(id);
+                _context.Set<TEntity>().Remove(entity);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public IQueryable<TEntity> GetAll()
         {
             try
@@ -43,6 +57,19 @@ namespace FinancialControl.DAL.Repositories
         }
 
         public async Task<TEntity> GetById(int id)
+        {
+            try
+            {
+                var entity = await _context.Set<TEntity>().FindAsync(id);
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<TEntity> GetById(string id)
         {
             try
             {

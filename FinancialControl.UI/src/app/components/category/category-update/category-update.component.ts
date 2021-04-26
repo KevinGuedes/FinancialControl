@@ -43,10 +43,22 @@ export class CategoryUpdateComponent implements OnInit {
       this.isSearchCompleted = true;
 
       this.categoryForm = new FormGroup({
-        id: new FormControl(category.id, [Validators.required]),
-        name: new FormControl(category.name, [Validators.required, Validators.maxLength(50)]),
-        icon: new FormControl(category.icon, [Validators.required, Validators.maxLength(15)]),
-        typeId: new FormControl(category.typeId, [Validators.required, Validators.min(1), Validators.max(2)]),
+        id: new FormControl(category.id, [
+          Validators.required
+        ]),
+        name: new FormControl(category.name, [
+          Validators.required,
+          Validators.maxLength(50)
+        ]),
+        icon: new FormControl(category.icon, [
+          Validators.required,
+          Validators.maxLength(15)
+        ]),
+        typeId: new FormControl(category.typeId, [
+          Validators.required,
+          Validators.min(1),
+          Validators.max(2)
+        ]),
       })
     })
   }
