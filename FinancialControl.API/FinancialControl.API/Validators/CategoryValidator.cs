@@ -11,7 +11,7 @@ namespace FinancialControl.API.Validators
         {
             RuleFor(c => c.Name)
                 .NotNull().WithMessage("Enter category name")
-                .MinimumLength(1).WithMessage("Category name too short. Provide a more meaningful name")
+                .MinimumLength(3).WithMessage("Category name too short. Provide a more meaningful name")
                 .MaximumLength(50).WithMessage("Category name too long");
 
             RuleFor(c => c.Icon)
@@ -20,7 +20,7 @@ namespace FinancialControl.API.Validators
                 .MaximumLength(15).WithMessage("Icon code too long");
 
             RuleFor(c => c.TypeId)
-                .Must(type => type != 0).WithMessage("Choose a type");
+                .Must(type => type != 0).WithMessage("Select a type");
         }
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeService } from 'src/app/services/type.service';
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Type } from 'src/app/models/type.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { Router } from '@angular/router';
@@ -32,14 +32,15 @@ export class CategoryCreateComponent implements OnInit {
     })
 
     this.categoryForm = new FormGroup({
-      name: new FormControl(null),
-      icon: new FormControl(null),
-      typeId: new FormControl(0),
+      name: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
+      icon: new FormControl(null, [Validators.required, Validators.maxLength(15)]),
+      typeId: new FormControl(0, [Validators.required, Validators.min(1), Validators.max(2)]),
     })
   }
 
   saveNewCategory(): void {
     const category = this.categoryForm.value;
+    console.log(this.categoryForm.controls.name.errors)
     this.categoryService.insertCategory(category).subscribe(
       response => {
         this.customSnackBarService.successMessage(response.message);
@@ -57,7 +58,7 @@ export class CategoryCreateComponent implements OnInit {
       })
   }
 
-  get property() {
+  get formControl() {
     return this.categoryForm.controls;
   }
 }

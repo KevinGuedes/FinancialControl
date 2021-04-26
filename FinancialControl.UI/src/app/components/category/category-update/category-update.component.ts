@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/models/category.model';
 import { Type } from 'src/app/models/type.model';
@@ -43,10 +43,10 @@ export class CategoryUpdateComponent implements OnInit {
       this.isSearchCompleted = true;
 
       this.categoryForm = new FormGroup({
-        id: new FormControl(category.id),
-        name: new FormControl(category.name),
-        icon: new FormControl(category.icon),
-        typeId: new FormControl(category.typeId),
+        id: new FormControl(category.id, [Validators.required]),
+        name: new FormControl(category.name, [Validators.required, Validators.maxLength(50)]),
+        icon: new FormControl(category.icon, [Validators.required, Validators.maxLength(15)]),
+        typeId: new FormControl(category.typeId, [Validators.required, Validators.min(1), Validators.max(2)]),
       })
     })
   }
@@ -70,7 +70,7 @@ export class CategoryUpdateComponent implements OnInit {
       })
   }
 
-  get property() {
+  get formControl() {
     return this.categoryForm.controls;
   }
 }
