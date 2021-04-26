@@ -16,6 +16,7 @@ export class CategoryCreateComponent implements OnInit {
   categoryForm: FormGroup;
   types: Type[];
   isSearchCompleted: boolean = false;
+  invalidFields: string[] = [];
 
   constructor(
     private typeService: TypeService,
@@ -33,16 +34,27 @@ export class CategoryCreateComponent implements OnInit {
     this.categoryForm = new FormGroup({
       name: new FormControl(null),
       icon: new FormControl(null),
-      typeId: new FormControl(null),
+      typeId: new FormControl(0),
     })
   }
 
   saveNewCategory(): void {
     const category = this.categoryForm.value;
-    this.categoryService.insertCategory(category).subscribe(response => {
-      this.customSnackBarService.successMessage(response.message);
-      this.router.navigate(['category']);
-    })
+    this.categoryService.insertCategory(category).subscribe(
+      response => {
+        this.customSnackBarService.successMessage(response.message);
+        this.router.navigate(['category']);
+      },
+      error => {
+        this.invalidFields = [];
+        if (error.status === 400) {
+          for (let field in error.error.errors) {
+            if (error.error.errors.hasOwnProperty(field)) {
+              this.invalidFields.push(error.error.errors[field])
+            }
+          }
+        }
+      })
   }
 
   get property() {

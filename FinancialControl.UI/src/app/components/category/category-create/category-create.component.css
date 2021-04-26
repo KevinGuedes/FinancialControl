@@ -17,5 +17,21 @@ mat-card-actions {
 }
 
 mat-card {
-    padding-bottom: 0%;
+    padding-bottom: 0;
+}
+
+.invalid-fields {
+    padding: 1rem 0;
+}
+
+.error {
+    margin: 0;
+    color: rgb(227, 94, 107);
+}
+.errors {
+    margin-top: 0 !important;
+}
+
+ul { 
+    padding-left: 1rem;
 }

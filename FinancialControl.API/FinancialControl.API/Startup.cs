@@ -1,7 +1,10 @@
+using FinancialControl.API.Validators;
 using FinancialControl.BLL.Models;
 using FinancialControl.DAL;
 using FinancialControl.DAL.Interfaces;
 using FinancialControl.DAL.Repositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +24,6 @@ namespace FinancialControl.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -33,24 +35,24 @@ namespace FinancialControl.API
 
             services.AddCors();
 
-            //services.AddSpaStaticFiles(directory =>
-            //{
-            //    directory.RootPath = "FinancialControlUI";
-            //});
+            services.AddTransient<IValidator<Category>, CategoryValidator>();
 
             services
                 .AddScoped<ICategoryRepository, CategoryRepository>()
                 .AddScoped<ITypeRepository, TypeRepository>();
 
-
             services
                 .AddControllers()
+                .AddFluentValidation()
                 .AddJsonOptions(options => options.JsonSerializerOptions.IgnoreNullValues = true)
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            //services.AddSpaStaticFiles(directory =>
+            //{
+            //    directory.RootPath = "FinancialControlUI";
+            //});
         }
 
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

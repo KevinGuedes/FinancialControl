@@ -38,17 +38,11 @@ export class CategoryService {
   }
 
   insertCategory(category: Category): Observable<any> {
-    return this.http.post<Category>(this.url, category, httpOptions).pipe(
-      map(p => p),
-      catchError(error => this.errorHandler(error))
-    );
+    return this.http.post<Category>(this.url, category, httpOptions);
   }
 
   updateCategory(id: number, category: Category): Observable<any> {
-    return this.http.put<Category>(`${this.url}/${id}`, category, httpOptions).pipe(
-      map(p => p),
-      catchError(error => this.errorHandler(error))
-    );
+    return this.http.put<Category>(`${this.url}/${id}`, category, httpOptions);
   }
 
   deleteCategory(id: number): Observable<any> {

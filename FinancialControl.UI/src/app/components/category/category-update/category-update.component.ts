@@ -20,6 +20,7 @@ export class CategoryUpdateComponent implements OnInit {
   types: Type[];
   categoryForm: FormGroup;
   isSearchCompleted: boolean = false;
+  invalidFields: string[] = [];
 
   constructor(
     private categoryService: CategoryService,
@@ -52,10 +53,21 @@ export class CategoryUpdateComponent implements OnInit {
 
   updateCategory() {
     const category = this.categoryForm.value;
-    this.categoryService.updateCategory(this.categoryId, category).subscribe(response => {
-      this.customSnackBarService.successMessage(response.message)
-      this.router.navigate(['category']);
-    })
+    this.categoryService.updateCategory(this.categoryId, category).subscribe(
+      response => {
+        this.customSnackBarService.successMessage(response.message)
+        this.router.navigate(['category']);
+      },
+      error => {
+        this.invalidFields = [];
+        if (error.status === 400) {
+          for (let field in error.error.errors) {
+            if (error.error.errors.hasOwnProperty(field)) {
+              this.invalidFields.push(error.error.errors[field])
+            }
+          }
+        }
+      })
   }
 
   get property() {

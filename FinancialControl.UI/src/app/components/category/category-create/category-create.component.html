@@ -29,9 +29,26 @@
 
         <mat-divider></mat-divider>
 
+        <div class="invalid-fields" *ngIf="invalidFields.length > 0">
+            <mat-card>
+                <mat-card-title>Something went wrong!</mat-card-title>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <div class="errors">
+                        <ul>
+                            <li class="error" *ngFor="let error of invalidFields">
+                                {{ error }}
+                            </li>
+                        </ul>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
         <mat-card-actions>
             <button type="submit" mat-raised-button color="primary">Save</button>
             <button mat-stroked-button routerLink="/category">Back</button>
         </mat-card-actions>
     </form>
+
 </mat-card>

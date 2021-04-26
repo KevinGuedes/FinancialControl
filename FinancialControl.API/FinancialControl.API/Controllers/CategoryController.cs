@@ -1,5 +1,7 @@
-﻿using FinancialControl.BLL.Models;
+﻿using FinancialControl.API.Validators;
+using FinancialControl.BLL.Models;
 using FinancialControl.DAL.Interfaces;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -68,7 +70,7 @@ namespace FinancialControl.API.Controllers
                 });
             }
 
-            return BadRequest(ModelState);
+            return BadRequest(category);
         }
 
 
