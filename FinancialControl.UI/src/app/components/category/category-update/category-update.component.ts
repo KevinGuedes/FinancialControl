@@ -5,6 +5,7 @@ import { Category } from 'src/app/models/category.model';
 import { Type } from 'src/app/models/type.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { TypeService } from 'src/app/services/type.service';
+import { CustomSnackBarService } from '../../message/custom-snack-bar/custom-snack-bar.service';
 
 @Component({
   selector: 'app-category-update',
@@ -25,6 +26,7 @@ export class CategoryUpdateComponent implements OnInit {
     private typeService: TypeService,
     private router: Router,
     private route: ActivatedRoute,
+    private customSnackBarService: CustomSnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -50,7 +52,8 @@ export class CategoryUpdateComponent implements OnInit {
 
   updateCategory() {
     const category = this.categoryForm.value;
-    this.categoryService.updateCategory(this.categoryId, category).subscribe(() => {
+    this.categoryService.updateCategory(this.categoryId, category).subscribe(response => {
+      this.customSnackBarService.successMessage(response.message)
       this.router.navigate(['category']);
     })
   }

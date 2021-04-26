@@ -48,7 +48,7 @@ namespace FinancialControl.API.Controllers
 
                 return Ok(new
                 {
-                    message = $"Category {category.Name} successfully updated"
+                    message = $"Category {category.Name} updated"
                 });
             }
 
@@ -64,7 +64,7 @@ namespace FinancialControl.API.Controllers
 
                 return Ok(new
                 {
-                    message = $"Category {category.Name} successfully inserted"
+                    message = $"Category {category.Name} created"
                 });
             }
 
@@ -84,7 +84,7 @@ namespace FinancialControl.API.Controllers
 
             return Ok(new
             {
-                message = $"Category {category.Name} successfully deleted"
+                message = $"Category {category.Name} deleted"
             });
         }
     }

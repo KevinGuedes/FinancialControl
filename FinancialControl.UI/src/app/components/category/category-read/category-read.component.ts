@@ -8,7 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-
+import { CustomSnackBarService } from '../../message/custom-snack-bar/custom-snack-bar.service';
 
 @Component({
   selector: 'app-category-read',
@@ -64,10 +64,6 @@ export class CategoryReadComponent implements OnInit {
           map(value => this._filter(value)),
         );
 
-      this.filterFormControl.valueChanges.subscribe(value => {
-        this.applyFilter(value);
-      })
-
       this.dataSource = new MatTableDataSource(categories);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -94,11 +90,13 @@ export class DialogCategoryDeleteComponent {
       categoryName: string,
       categoryId: number
     },
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private customSnackBarService: CustomSnackBarService
   ) { }
 
   deleteCategory(id: number) {
-    this.categoryService.deleteCategory(id).subscribe(category => {
+    this.categoryService.deleteCategory(id).subscribe(response => {
+      this.customSnackBarService.warningMessage(response.message);
       this.close(true);
     })
   }

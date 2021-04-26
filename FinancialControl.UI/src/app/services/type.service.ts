@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, EMPTY } from "rxjs";
 import { catchError, map } from 'rxjs/operators';
+import { CustomSnackBarService } from '../components/message/custom-snack-bar/custom-snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class TypeService {
 
   constructor(
     private http: HttpClient,
+    private customSnackBarService: CustomSnackBarService
   ) { }
 
   getTypes(): Observable<Type[]> {
@@ -23,8 +25,7 @@ export class TypeService {
   }
 
   errorHandler(error: any): Observable<any> {
-    // this.customSnackBarService.errorMessage("An error has occurred")
-    console.log('deu ruim')
+    this.customSnackBarService.errorMessage("An error has occurred")
     return EMPTY
   }
 }

@@ -6,3 +6,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 mat-card-title {
     margin: auto 0 auto 0;
 }
+
+.msg-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.msg-error {
+    background-color: rgb(227, 94, 107);
+    color: #fff;
+}
+
+.msg-warning {
+    background-color: rgb(253, 220, 31);
+    color: #fff;
+}
+
+.mat-simple-snackbar-action {
+        color: white !important;
+}

@@ -1,0 +1,21 @@
+  
+.snack-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.message { 
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message .icon {
+    margin-left: 10px;
+}
+
+.btn-close:hover {
+    cursor: pointer;
+}

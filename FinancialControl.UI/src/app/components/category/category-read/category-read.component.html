@@ -17,9 +17,9 @@
 
         <form class="example-form">
             <mat-form-field class="example-full-width">
-                <mat-label>Category Name</mat-label>
-                <input type="text" placeholder="Name" aria-label="Category Name" matInput [formControl]="filterFormControl"
-                    [matAutocomplete]="auto" #input>
+                <mat-label>Filter</mat-label>
+                <input type="text" placeholder="Category Name" matInput [formControl]="filterFormControl"
+                    [matAutocomplete]="auto" #input (ngModelChange)="applyFilter($event)">
                 <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                         {{ option }}

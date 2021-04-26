@@ -21,18 +21,22 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CategoryReadComponent, DialogCategoryDeleteComponent } from './components/category/category-read/category-read.component';
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
 import { CategoryUpdateComponent } from './components/category/category-update/category-update.component';
+import { CustomSnackBarComponent } from './components/message/custom-snack-bar/custom-snack-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
     CategoryReadComponent,
     CategoryCreateComponent,
     CategoryUpdateComponent,
-    DialogCategoryDeleteComponent
+    DialogCategoryDeleteComponent,
+    CustomSnackBarComponent
   ],
   imports: [
     BrowserModule,
@@ -48,12 +52,14 @@ import { CategoryUpdateComponent } from './components/category/category-update/c
     MatInputModule,
     MatCardModule,
     ReactiveFormsModule,
+    FormsModule, //This module prevents 'enter key' to reload page on forms 
     MatDividerModule,
     MatSelectModule,
     MatProgressBarModule,
     MatGridListModule,
     MatDialogModule,
     MatAutocompleteModule,
+    MatSnackBarModule,
   ],
   providers: [
     TypeService,
@@ -61,7 +67,8 @@ import { CategoryUpdateComponent } from './components/category/category-update/c
     HttpClientModule,
   ],
   entryComponents: [
-    DialogCategoryDeleteComponent
+    DialogCategoryDeleteComponent,
+    CustomSnackBarComponent
   ],
   bootstrap: [AppComponent]
 })

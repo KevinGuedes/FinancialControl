@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms'
 import { Type } from 'src/app/models/type.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { Router } from '@angular/router';
+import { CustomSnackBarService } from '../../message/custom-snack-bar/custom-snack-bar.service';
 
 @Component({
   selector: 'app-category-create',
@@ -20,6 +21,7 @@ export class CategoryCreateComponent implements OnInit {
     private typeService: TypeService,
     private categoryService: CategoryService,
     private router: Router,
+    private customSnackBarService: CustomSnackBarService,
   ) { }
 
   ngOnInit(): void {
@@ -37,8 +39,8 @@ export class CategoryCreateComponent implements OnInit {
 
   saveNewCategory(): void {
     const category = this.categoryForm.value;
-    console.log(category)
-    this.categoryService.insertCategory(category).subscribe(category => {
+    this.categoryService.insertCategory(category).subscribe(response => {
+      this.customSnackBarService.successMessage(response.message);
       this.router.navigate(['category']);
     })
   }

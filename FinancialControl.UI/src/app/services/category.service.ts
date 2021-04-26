@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Category } from '../models/category.model';
 import { Observable, EMPTY } from "rxjs";
 import { catchError, map } from 'rxjs/operators';
+import { CustomSnackBarService } from '../components/message/custom-snack-bar/custom-snack-bar.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,7 +19,8 @@ export class CategoryService {
   private url: string = 'https://localhost:44368/category'
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private customSnackBarService: CustomSnackBarService
   ) { }
 
   getCategories(): Observable<Category[]> {
@@ -35,7 +37,7 @@ export class CategoryService {
     );
   }
 
-  insertCategory(category: Category): Observable<Category> {
+  insertCategory(category: Category): Observable<any> {
     return this.http.post<Category>(this.url, category, httpOptions).pipe(
       map(p => p),
       catchError(error => this.errorHandler(error))
@@ -49,7 +51,7 @@ export class CategoryService {
     );
   }
 
-  deleteCategory(id: number): Observable<Category> {
+  deleteCategory(id: number): Observable<any> {
     return this.http.delete<number>(`${this.url}/${id}`, httpOptions).pipe(
       map(p => p),
       catchError(error => this.errorHandler(error))
@@ -57,8 +59,7 @@ export class CategoryService {
   }
 
   errorHandler(error: any): Observable<any> {
-    // this.customSnackBarService.errorMessage("An error has occurred")
-    console.log(error)
+    this.customSnackBarService.errorMessage("An error has occurred")
     return EMPTY
   }
 }
