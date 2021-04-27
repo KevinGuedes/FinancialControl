@@ -1,5 +1,6 @@
 import { TypeService } from '../app/services/type.service'
 import { CategoryService } from '../app/services/category.service';
+import { RoleService } from './services/role.service';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,6 +30,7 @@ import { CategoryReadComponent, DialogCategoryDeleteComponent } from './componen
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
 import { CategoryUpdateComponent } from './components/category/category-update/category-update.component';
 import { CustomSnackBarComponent } from './components/message/custom-snack-bar/custom-snack-bar.component';
+import { RoleReadComponent } from './components/role/role-read/role-read.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { CustomSnackBarComponent } from './components/message/custom-snack-bar/c
     CategoryCreateComponent,
     CategoryUpdateComponent,
     DialogCategoryDeleteComponent,
-    CustomSnackBarComponent
+    CustomSnackBarComponent,
+    RoleReadComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ import { CustomSnackBarComponent } from './components/message/custom-snack-bar/c
   providers: [
     TypeService,
     CategoryService,
+    RoleService,
     HttpClientModule,
   ],
   entryComponents: [

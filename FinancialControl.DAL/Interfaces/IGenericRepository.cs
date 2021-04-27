@@ -21,5 +21,7 @@ namespace FinancialControl.DAL.Interfaces
         Task Delete(int id);
 
         Task Delete(string id);
+
+        Task Delete(TEntity entity);
     }
 }

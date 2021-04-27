@@ -5,22 +5,22 @@ using System;
 
 namespace FinancialControl.DAL.Mappers
 {
-    public class FunctionMapper : IEntityTypeConfiguration<Function>
+    public class RoleMapper : IEntityTypeConfiguration<Role>
     {
-        public void Configure(EntityTypeBuilder<Function> builder)
+        public void Configure(EntityTypeBuilder<Role> builder)
         {
-            builder.Property(f => f.Id).ValueGeneratedOnAdd();
-            builder.Property(f => f.Description).IsRequired().HasMaxLength(50);
+            builder.Property(r => r.Id).ValueGeneratedOnAdd();
+            builder.Property(r => r.Description).IsRequired().HasMaxLength(50);
 
             builder.HasData(
-                new Function
+                new Role
                 {
                     Id = Guid.NewGuid().ToString(),
                     Name = "Administrator",
                     NormalizedName = "ADMINISTRATOR",
                     Description = "System Administrator"
                 },
-                 new Function
+                 new Role
                  {
                      Id = Guid.NewGuid().ToString(),
                      Name = "User",
@@ -29,7 +29,7 @@ namespace FinancialControl.DAL.Mappers
                  }
             );
 
-            builder.ToTable("Functions");
+            builder.ToTable("Roles");
         }
     }
 }

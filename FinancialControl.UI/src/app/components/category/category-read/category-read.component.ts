@@ -24,7 +24,7 @@ export class CategoryReadComponent implements OnInit {
   options: string[];
   filterFormControl: FormControl = new FormControl();
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(

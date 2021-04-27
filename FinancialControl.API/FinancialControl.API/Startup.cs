@@ -30,7 +30,7 @@ namespace FinancialControl.API
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("FinancialControlDB")));
 
             services
-                .AddIdentity<User, Function>()
+                .AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<Context>();
 
             services.AddCors();
@@ -40,7 +40,7 @@ namespace FinancialControl.API
             services
                 .AddScoped<ICategoryRepository, CategoryRepository>()
                 .AddScoped<ITypeRepository, TypeRepository>()
-                .AddScoped<IFunctionRepository, FunctionRepository>();
+                .AddScoped<IRoleRepository, RoleRepository>();
 
             services
                 .AddControllers()

@@ -6,13 +6,23 @@ using Type = FinancialControl.BLL.Models.Type;
 
 namespace FinancialControl.DAL
 {
-    public class Context : IdentityDbContext<User, Function, string>
+    public class Context : IdentityDbContext<User, Role, string>
     {
         public DbSet<Card> Cards { get; set; }
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Function> Functions { get; set; }
+        private DbSet<Role> roles;
+
+        public DbSet<Role> GetRoles()
+        {
+            return roles;
+        }
+
+        public void SetRoles(DbSet<Role> value)
+        {
+            roles = value;
+        }
 
         public DbSet<Profit> Profits { get; set; }
 
@@ -38,7 +48,7 @@ namespace FinancialControl.DAL
             builder.ApplyConfiguration(new ProfitMapper());
             builder.ApplyConfiguration(new ExpenditureMapper());
             builder.ApplyConfiguration(new CardMapper());
-            builder.ApplyConfiguration(new FunctionMapper());
+            builder.ApplyConfiguration(new RoleMapper());
             builder.ApplyConfiguration(new MonthMapper());
         }
     }
