@@ -1,6 +1,6 @@
-﻿namespace FinancialControl.API.ViewModels
+﻿namespace FinancialControl.API.DTOs
 {
-    public class RoleViewModel
+    public class RoleDTO
     {
         public string Id { get; set; }
 

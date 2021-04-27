@@ -27,7 +27,7 @@ namespace FinancialControl.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        public async Task<ActionResult<Category>> GetCategoryById(int id)
         {
             Category category = await _categoryRepository.GetById(id);
 

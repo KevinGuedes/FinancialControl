@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import { CategoryReadComponent, DialogCategoryDeleteComponent } from './components/category/category-read/category-read.component';
@@ -63,6 +64,7 @@ import { RoleReadComponent } from './components/role/role-read/role-read.compone
     MatDialogModule,
     MatAutocompleteModule,
     MatSnackBarModule,
+    MatTooltipModule,
   ],
   providers: [
     TypeService,

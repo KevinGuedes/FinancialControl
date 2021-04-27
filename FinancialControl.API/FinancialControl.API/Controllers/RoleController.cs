@@ -1,4 +1,4 @@
-﻿using FinancialControl.API.ViewModels;
+﻿using FinancialControl.API.DTOs;
 using FinancialControl.BLL.Models;
 using FinancialControl.DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 
 namespace FinancialControl.API.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class RoleController : ControllerBase
     {
         private readonly IRoleRepository _roleRepository;
-        
+
         public RoleController(IRoleRepository roleRepository)
         {
             _roleRepository = roleRepository;
@@ -26,80 +28,77 @@ namespace FinancialControl.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Role>> GetRole(string id)
+        public async Task<ActionResult<Role>> GetRoleById(string id)
         {
-            Role function = await _roleRepository.GetById(id);
+            Role role = await _roleRepository.GetById(id);
 
-            if (function == null)
+            if (role == null)
                 return NotFound();
 
-            return function;
+            return role;
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateRole(string id, RoleViewModel function)
+        public async Task<IActionResult> UpdateRole(string id, RoleDTO roleDTO)
         {
-            if (id != function.Id)
+            if (id != roleDTO.Id)
                 return BadRequest();
-
 
             if (ModelState.IsValid)
             {
-                Role functionToUpdate = new Role
+                Role roleToUpdate = new()
                 {
-                    Id = function.Id,
-                    Name = function.Name,
-                    Description = function.Description
+                    Id = roleDTO.Id,
+                    Name = roleDTO.Name,
+                    Description = roleDTO.Description
                 };
 
-                await _roleRepository.UpdateRole(functionToUpdate);
+                await _roleRepository.UpdateRole(roleToUpdate);
 
                 return Ok(new
                 {
-                    message = $"Role {function.Name} updated"
+                    message = $"Role {roleToUpdate.Name} updated"
                 });
             }
 
             return BadRequest(ModelState);
         }
 
-
         [HttpPost]
-        public async Task<ActionResult<Role>> InsertCategory(RoleViewModel function)
+        public async Task<ActionResult<Role>> InsertRole(RoleDTO roleDTO)
         {
             if (ModelState.IsValid)
             {
-                Role newRole = new Role
+                Role newRole = new()
                 {
-                    Name = function.Name,
-                    Description = function.Description
+                    Name = roleDTO.Name,
+                    Description = roleDTO.Description
                 };
 
                 await _roleRepository.InsertRole(newRole);
 
                 return Ok(new
                 {
-                    message = $"Role {function.Name} created"
+                    message = $"Role {newRole.Name} created"
                 });
             }
 
             return BadRequest(ModelState);
         }
 
-
         [HttpDelete("{id}")]
         public async Task<ActionResult<Role>> DeleteRole(string id)
         {
-            Role function = await _roleRepository.GetById(id);
+            Role role = await _roleRepository.GetById(id);
 
-            if (function == null)
+            if (role == null)
                 return NotFound();
 
-            await _roleRepository.Delete(function);
+            await _roleRepository.Delete(role);
 
             return Ok(new
             {
-                message = $"Role {function.Name} deleted"
+                message = $"Role {role.Name} deleted"
             });
         }
     }

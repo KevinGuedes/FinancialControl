@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>Delete Role: <strong>{{ data.roleName }}</strong></h1>
+<div mat-dialog-content>Are you sure you want to delete the role: <strong>{{ data.roleName }}</strong>?</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="warn" (click)="deleteRole(data.roleId)">Yes</button>
+    <button mat-raised-button (click)="close(false)">No</button>
+</div>

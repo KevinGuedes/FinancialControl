@@ -66,8 +66,14 @@ export class CategoryReadComponent implements OnInit {
 
       this.dataSource = new MatTableDataSource(categories);
       this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
       this.isSearchCompleted = true;
+
+      this.dataSource.sortingDataAccessor = (item, property) => {
+        if (property.includes('.')) return property.split('.').reduce((o, i) => o[i], item)
+        return item[property];
+      };
+
+      this.dataSource.sort = this.sort;
     })
   }
 
