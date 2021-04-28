@@ -1,0 +1,38 @@
+<mat-progress-bar class="progress-bar" *ngIf="!isSearchCompleted" mode="buffer"></mat-progress-bar>
+
+<mat-card class="container" *ngIf="isSearchCompleted">
+    <mat-card-title>Create New Role</mat-card-title>
+
+    <form [formGroup]="roleForm" (ngSubmit)="saveNewRole()">
+        <mat-card-content>
+            <div>
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input type="text" matInput formControlName="name" placeholder="Role name" required />
+                    <mat-error *ngIf="formControl.name.touched && formControl.icon.invalid">
+                        Enter role name
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <input type="text" matInput formControlName="description" placeholder="Description" required />
+                    <mat-error *ngIf="formControl.description.touched && formControl.description.invalid">
+                        Enter role description
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+
+        <mat-divider></mat-divider>
+
+        <app-invalid-fields [invalidFields]="invalidFields"></app-invalid-fields>
+
+        <mat-card-actions>
+            <button type="submit" mat-raised-button color="primary" [disabled]="roleForm.invalid">Save</button>
+            <button mat-stroked-button routerLink="/role">Back</button>
+        </mat-card-actions>
+    </form>
+
+</mat-card>

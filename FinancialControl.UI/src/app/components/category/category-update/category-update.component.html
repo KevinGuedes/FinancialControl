@@ -38,21 +38,8 @@
 
         <mat-divider></mat-divider>
 
-        <div class="invalid-fields" *ngIf="invalidFields.length > 0">
-            <mat-card>
-                <mat-card-title>Something went wrong!</mat-card-title>
-                <mat-divider></mat-divider>
-                <mat-card-content>
-                    <div class="errors">
-                        <ul>
-                            <li class="error" *ngFor="let error of invalidFields">
-                                {{ error }}
-                            </li>
-                        </ul>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-        </div>
+        <app-invalid-fields [invalidFields]="invalidFields"></app-invalid-fields>
+
 
         <mat-card-actions>
             <div>

@@ -13,13 +13,13 @@ mat-card-title {
 }
 
 .msg-error {
-    background-color: F4D9D6;
+    background-color: #F4D9D6;
     color: #D5442D;
 }
 
 .msg-warning {
-    background-color: rgb(253, 220, 31);
-    color: #fff;
+    background-color: #F8ECD6;
+    color: #C78300;
 }
 
 .mat-simple-snackbar-action {

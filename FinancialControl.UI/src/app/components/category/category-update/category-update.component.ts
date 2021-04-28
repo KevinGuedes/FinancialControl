@@ -5,7 +5,7 @@ import { Category } from 'src/app/models/category.model';
 import { Type } from 'src/app/models/type.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { TypeService } from 'src/app/services/type.service';
-import { CustomSnackBarService } from '../../message/custom-snack-bar/custom-snack-bar.service';
+import { CustomSnackBarService } from 'src/app/components/message/custom-snack-bar/custom-snack-bar.service';
 
 @Component({
   selector: 'app-category-update',

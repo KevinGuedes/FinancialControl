@@ -31,7 +31,10 @@ import { CategoryReadComponent, DialogCategoryDeleteComponent } from './componen
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
 import { CategoryUpdateComponent } from './components/category/category-update/category-update.component';
 import { CustomSnackBarComponent } from './components/message/custom-snack-bar/custom-snack-bar.component';
-import { RoleReadComponent } from './components/role/role-read/role-read.component';
+import { RoleReadComponent, DialogRoleDeleteComponent } from './components/role/role-read/role-read.component';
+import { RoleCreateComponent } from './components/role/role-create/role-create.component';
+import { InvalidFieldsComponent } from './components/templates/invalid-fields/invalid-fields.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +43,10 @@ import { RoleReadComponent } from './components/role/role-read/role-read.compone
     CategoryUpdateComponent,
     DialogCategoryDeleteComponent,
     CustomSnackBarComponent,
-    RoleReadComponent
+    RoleReadComponent,
+    DialogRoleDeleteComponent,
+    RoleCreateComponent,
+    InvalidFieldsComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +80,8 @@ import { RoleReadComponent } from './components/role/role-read/role-read.compone
   ],
   entryComponents: [
     DialogCategoryDeleteComponent,
-    CustomSnackBarComponent
+    DialogRoleDeleteComponent,
+    CustomSnackBarComponent,
   ],
   bootstrap: [AppComponent]
 })
