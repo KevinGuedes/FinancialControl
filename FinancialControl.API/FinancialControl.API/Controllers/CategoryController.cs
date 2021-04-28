@@ -1,7 +1,5 @@
-﻿using FinancialControl.API.Validators;
-using FinancialControl.BLL.Models;
+﻿using FinancialControl.BLL.Models;
 using FinancialControl.DAL.Interfaces;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

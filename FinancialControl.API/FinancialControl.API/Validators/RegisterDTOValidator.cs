@@ -27,7 +27,7 @@ namespace FinancialControl.API.Validators
 
             RuleFor(r => r.Email)
               .NotNull().WithMessage("Enter user email")
-              .MinimumLength(10).WithMessage("User email too short")
+              .MinimumLength(6).WithMessage("User email too short")
               .MaximumLength(50).WithMessage("User email too long")
               .EmailAddress().WithMessage("Invalid email");
 

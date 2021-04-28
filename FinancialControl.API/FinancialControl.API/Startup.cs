@@ -1,4 +1,5 @@
 using FinancialControl.API.DTOs;
+using FinancialControl.API.Extensions;
 using FinancialControl.API.Validators;
 using FinancialControl.BLL.Models;
 using FinancialControl.DAL;
@@ -33,6 +34,8 @@ namespace FinancialControl.API
             services
                 .AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<Context>();
+
+            services.ConfigureUserPassword();
 
             services.AddCors();
 

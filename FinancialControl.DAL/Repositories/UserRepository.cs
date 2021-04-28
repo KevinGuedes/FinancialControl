@@ -23,11 +23,11 @@ namespace FinancialControl.DAL.Repositories
             _signInManager = signInManager;
         }
 
-        public async Task<IdentityResult> AddUserToRole(User user, string role)
+        public async Task AddUserToRole(User user, string role)
         {
             try
             {
-                return await _userManager.AddToRoleAsync(user, role);
+                await _userManager.AddToRoleAsync(user, role);
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace FinancialControl.DAL.Repositories
         {
             try
             {
-                await _signInManager.SignInAsync(user, false);
+                await _signInManager.SignInAsync(user, remember);
             }
             catch(Exception ex)
             {
