@@ -14,7 +14,6 @@ import { CustomSnackBarService } from 'src/app/components/message/custom-snack-b
 })
 export class CategoryUpdateComponent implements OnInit {
 
-  categoryName: string;
   category: Category;
   categoryId: number;
   types: Type[];
@@ -39,8 +38,6 @@ export class CategoryUpdateComponent implements OnInit {
 
     this.categoryService.getCategoryById(this.categoryId).subscribe(category => {
       this.category = category;
-      this.categoryName = category.name;
-      this.isSearchCompleted = true;
 
       this.categoryForm = new FormGroup({
         id: new FormControl(category.id, [
@@ -60,6 +57,8 @@ export class CategoryUpdateComponent implements OnInit {
           Validators.max(2)
         ]),
       })
+
+      this.isSearchCompleted = true;
     })
   }
 

@@ -12,7 +12,6 @@ import { RoleService } from 'src/app/services/role.service';
 export class RoleCreateComponent implements OnInit {
 
   roleForm: FormGroup;
-  isSearchCompleted: boolean = false;
   invalidFields: string[] = [];
 
   constructor(

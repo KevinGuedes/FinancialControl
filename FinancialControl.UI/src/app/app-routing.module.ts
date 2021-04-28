@@ -5,6 +5,7 @@ import { CategoryReadComponent } from './components/category/category-read/categ
 import { CategoryUpdateComponent } from './components/category/category-update/category-update.component';
 import { RoleCreateComponent } from './components/role/role-create/role-create.component';
 import { RoleReadComponent } from './components/role/role-read/role-read.component';
+import { RoleUpdateComponent } from './components/role/role-update/role-update.component';
 
 const routes: Routes = [
   { path: 'category', component: CategoryReadComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'category/update/:id', component: CategoryUpdateComponent },
   { path: 'role', component: RoleReadComponent },
   { path: 'role/create', component: RoleCreateComponent },
+  { path: 'role/update/:id', component: RoleUpdateComponent },
 ];
 
 @NgModule({

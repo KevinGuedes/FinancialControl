@@ -1,7 +1,7 @@
 <mat-progress-bar class="progress-bar" *ngIf="!isSearchCompleted" mode="buffer"></mat-progress-bar>
 
 <mat-card class="container" *ngIf="isSearchCompleted">
-    <mat-card-title>Update Category: {{ categoryName }}</mat-card-title>
+    <mat-card-title>Update Category: <strong>{{ category.name }}</strong></mat-card-title>
 
     <form [formGroup]="categoryForm" (ngSubmit)="updateCategory()">
         <mat-card-content>

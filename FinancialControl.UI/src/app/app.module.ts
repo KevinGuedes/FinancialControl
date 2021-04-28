@@ -34,6 +34,7 @@ import { CustomSnackBarComponent } from './components/message/custom-snack-bar/c
 import { RoleReadComponent, DialogRoleDeleteComponent } from './components/role/role-read/role-read.component';
 import { RoleCreateComponent } from './components/role/role-create/role-create.component';
 import { InvalidFieldsComponent } from './components/templates/invalid-fields/invalid-fields.component';
+import { RoleUpdateComponent } from './components/role/role-update/role-update.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { InvalidFieldsComponent } from './components/templates/invalid-fields/in
     DialogRoleDeleteComponent,
     RoleCreateComponent,
     InvalidFieldsComponent,
+    RoleUpdateComponent,
   ],
   imports: [
     BrowserModule,

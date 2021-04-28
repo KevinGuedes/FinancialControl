@@ -56,7 +56,6 @@ export class RoleReadComponent implements OnInit {
   }
 
   buildRoleTable(): void {
-    debugger
     this.roleService.getRoles().subscribe(roles => {
       this.options = roles.map(role => role.name);
       this.filteredOptions = this.filterFormControl.valueChanges

@@ -1,7 +1,9 @@
-<mat-card class="container">
-    <mat-card-title>Create New Role</mat-card-title>
+<mat-progress-bar class="progress-bar" *ngIf="!isSearchCompleted" mode="buffer"></mat-progress-bar>
 
-    <form [formGroup]="roleForm" (ngSubmit)="saveNewRole()">
+<mat-card class="container" *ngIf="isSearchCompleted">
+    <mat-card-title>Update Role: <strong>{{ role.name }}</strong></mat-card-title>
+
+    <form [formGroup]="roleForm" (ngSubmit)="updateRole()">
         <mat-card-content>
             <div>
                 <mat-form-field>
@@ -32,5 +34,4 @@
             <button mat-stroked-button routerLink="/role">Back</button>
         </mat-card-actions>
     </form>
-
 </mat-card>
