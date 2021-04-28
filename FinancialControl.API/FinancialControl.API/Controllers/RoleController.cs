@@ -53,7 +53,7 @@ namespace FinancialControl.API.Controllers
                     Description = roleDTO.Description
                 };
 
-                await _roleRepository.UpdateRole(roleToUpdate);
+                await _roleRepository.Update(roleToUpdate);
 
                 return Ok(new
                 {
@@ -75,7 +75,7 @@ namespace FinancialControl.API.Controllers
                     Description = roleDTO.Description
                 };
 
-                await _roleRepository.InsertRole(newRole);
+                await _roleRepository.Insert(newRole);
 
                 return Ok(new
                 {

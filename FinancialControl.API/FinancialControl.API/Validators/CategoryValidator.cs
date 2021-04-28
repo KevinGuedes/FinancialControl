@@ -1,12 +1,10 @@
 ﻿using FinancialControl.BLL.Models;
 using FluentValidation;
-using System.Collections.Generic;
 
 namespace FinancialControl.API.Validators
 {
     public class CategoryValidator : AbstractValidator<Category>
     {
-        
         public CategoryValidator()
         {
             RuleFor(c => c.Name)

@@ -1,3 +1,4 @@
+using FinancialControl.API.DTOs;
 using FinancialControl.API.Validators;
 using FinancialControl.BLL.Models;
 using FinancialControl.DAL;
@@ -35,12 +36,18 @@ namespace FinancialControl.API
 
             services.AddCors();
 
-            services.AddTransient<IValidator<Category>, CategoryValidator>();
+            services
+                .AddTransient<IValidator<Category>, CategoryValidator>()
+                .AddTransient<IValidator<RoleDTO>, RoleDTOValidator>()
+                .AddTransient<IValidator<RegisterDTO>, RegisterDTOValidator>();
+
 
             services
                 .AddScoped<ICategoryRepository, CategoryRepository>()
                 .AddScoped<ITypeRepository, TypeRepository>()
-                .AddScoped<IRoleRepository, RoleRepository>();
+                .AddScoped<IRoleRepository, RoleRepository>()
+                .AddScoped<IUserRepository, UserRepository>();
+
 
             services
                 .AddControllers()

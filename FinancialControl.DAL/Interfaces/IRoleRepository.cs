@@ -5,8 +5,8 @@ namespace FinancialControl.DAL.Interfaces
 {
     public interface IRoleRepository : IGenericRepository<Role>
     {
-        Task InsertRole(Role role);
+        new Task Insert(Role role);
 
-        Task UpdateRole(Role role);
+        new Task Update(Role role);
     }
 }

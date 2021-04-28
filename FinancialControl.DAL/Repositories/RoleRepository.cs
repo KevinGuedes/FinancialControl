@@ -17,7 +17,7 @@ namespace FinancialControl.DAL.Repositories
             _roleManager = roleManager;
         }
 
-        public async Task InsertRole(Role role)
+        public new async Task Insert(Role role)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace FinancialControl.DAL.Repositories
             }
         }
 
-        public async Task UpdateRole(Role role)
+        public new async Task Update(Role role)
         {
             try
             {
