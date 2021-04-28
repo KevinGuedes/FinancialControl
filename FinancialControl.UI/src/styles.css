@@ -8,13 +8,13 @@ mat-card-title {
 }
 
 .msg-success {
-    background-color: #28a745;
-    color: #fff;
+    background-color: #DDE7C4;
+    color: #70A507;
 }
 
 .msg-error {
-    background-color: rgb(227, 94, 107);
-    color: #fff;
+    background-color: F4D9D6;
+    color: #D5442D;
 }
 
 .msg-warning {

@@ -18,7 +18,7 @@ import { CustomSnackBarService } from '../../message/custom-snack-bar/custom-sna
 export class CategoryReadComponent implements OnInit {
 
   dataSource: MatTableDataSource<Category>;
-  displayedColumns = ['name', 'icon', 'type', 'actions']
+  displayedColumns = ['name', 'icon', 'type.name', 'actions']
   isSearchCompleted: boolean = false;
   filteredOptions: Observable<string[]>;
   options: string[];
@@ -67,19 +67,20 @@ export class CategoryReadComponent implements OnInit {
       this.dataSource = new MatTableDataSource(categories);
       this.dataSource.paginator = this.paginator;
       this.isSearchCompleted = true;
-
-      this.dataSource.sortingDataAccessor = (item, property) => {
-        if (property.includes('.')) return property.split('.').reduce((o, i) => o[i], item)
-        return item[property];
-      };
-
       this.dataSource.sort = this.sort;
+      this.dataSource.sortingDataAccessor = (data, sortHeaderId: string) => {
+        return this.getPropertyByPath(data, sortHeaderId);
+      };
     })
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  private getPropertyByPath(obj: Object, pathString: string) {
+    return pathString.split('.').reduce((o, i) => o[i], obj);
   }
 }
 
