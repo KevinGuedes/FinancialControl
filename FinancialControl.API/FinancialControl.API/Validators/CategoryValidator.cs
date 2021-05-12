@@ -18,7 +18,7 @@ namespace FinancialControl.API.Validators
                 .MaximumLength(15).WithMessage("Icon code too long");
 
             RuleFor(c => c.TypeId)
-                .Must(type => type != 0).WithMessage("Select a type");
+                .Must(type => type != 0).WithMessage("Select the category type");
         }
     }
 }

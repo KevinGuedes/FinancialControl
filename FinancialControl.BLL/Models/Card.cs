@@ -14,7 +14,7 @@ namespace FinancialControl.BLL.Models
 
         public double Limit { get; set; }
 
-        public string UserId { get; set; } //Por causa do Identity
+        public string UserId { get; set; } //Por causa do Identity, o id é do tipo string. 
 
         public User User { get; set; }
 

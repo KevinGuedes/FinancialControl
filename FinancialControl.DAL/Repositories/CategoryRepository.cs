@@ -2,6 +2,8 @@
 using FinancialControl.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,13 +18,29 @@ namespace FinancialControl.DAL.Repositories
             _context = context;
         }
 
-        public new IQueryable<Category> GetAll()
+        public new async Task<IEnumerable<object>> GetAll()
         {
             try
             {
-                return _context.Categories.Include(c => c.Type);
+                IEnumerable<Category> categories = await _context.Categories.Include(c => c.Type).ToListAsync();
+
+                var x = categories
+                    .Select(c => new
+                    {
+                        c.Id,
+                        c.Name,
+                        c.Icon,
+                        c.TypeId,
+                        Type = new
+                        {
+                            c.Type.Id,
+                            c.Type.Name
+                        }
+                    });
+
+                return x;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }

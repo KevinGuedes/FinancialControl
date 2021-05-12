@@ -19,9 +19,9 @@ namespace FinancialControl.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<IEnumerable<object>> GetCategories()
         {
-            return await _categoryRepository.GetAll().ToListAsync();
+            return await _categoryRepository.GetAll();
         }
 
         [HttpGet("{id}")]
