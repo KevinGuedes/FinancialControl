@@ -19,7 +19,7 @@ namespace FinancialControl.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<object>> GetCategories()
+        public async Task<IEnumerable<object>> GetCategories()  //can be Task<dynamic>
         {
             return await _categoryRepository.GetAll();
         }
